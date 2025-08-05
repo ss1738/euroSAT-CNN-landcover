@@ -1,44 +1,47 @@
+# 🌍 EuroSAT CNN Land Cover Classification
 
-# Land Cover Classification using CNN on EuroSAT Dataset
+> 🚀 University AI for Space Project — Scored **90%**
 
-## Project Overview
-This project applies a Convolutional Neural Network (CNN) model based on **ResNet18** to classify satellite images from the **EuroSAT** dataset into different land cover categories.
+This project applies a **Convolutional Neural Network (CNN)** model based on **ResNet-18** to classify satellite images from the **EuroSAT dataset** into various land cover categories.
 
-- **Problem**: Land Cover Classification from satellite imagery.
-- **Dataset**: [EuroSAT](https://github.com/phelber/eurosat) (RGB version).
-- **Model**: Pre-trained ResNet18 fine-tuned on EuroSAT.
-- **Framework**: PyTorch.
+---
 
-## Directory Structure
-```
-/Final_Project_Submission/
-    ├── eurosat_cnn.py
-    ├── resnet18_eurosat.pth
-    ├── EuroSAT/ (optional if dataset download is automatic)
-    └── README.md
-```
+## 📂 Project Files
 
-## Setup Instructions
+- `eurosat_cnn_classification.ipynb` — Jupyter Notebook for model training & evaluation
+- `Land_Cover_CNN_Report.pdf` — Final project report (graded 90%)
+- `Land_Cover_CNN_Presentation.pptx` — Project presentation
+- `demo_video.mp4` — Short video demo of the model
+- `README.md` — Project overview and setup instructions
 
-1. Install the required libraries:
-```bash
-pip install torch torchvision scikit-learn seaborn matplotlib
-```
+---
 
-2. Run the Python script:
-```bash
-python eurosat_cnn.py
-```
+## 🛰️ Problem Statement
 
-The script will:
-- Download or load the EuroSAT dataset.
-- Train the ResNet18 model for 10 epochs.
-- Evaluate the model on a test set.
-- Display training and validation accuracy plots.
-- Plot a confusion matrix.
-- Save the trained model (`resnet18_eurosat.pth`).
+Classify land cover types from RGB satellite imagery such as:
+- Forest
+- Sea/Lake
+- Residential
+- River
+- Annual Crop
 
-## Requirements
+Using deep learning methods to support Earth observation and remote sensing automation.
+
+---
+
+## 📊 Results
+
+- ✅ **Model Used:** Pretrained ResNet-18
+- 📈 **Test Accuracy:** ~94.69%
+- 🔎 **Validation Accuracy:** ~93.54%
+- 📋 **Precision/Recall:** >90% for major classes
+
+Visuals include confusion matrix, classification report, and accuracy/loss curves.
+
+---
+
+## ⚙️ Tech Stack
+
 - Python 3.8+
 - PyTorch
 - Torchvision
@@ -46,21 +49,55 @@ The script will:
 - Seaborn
 - Matplotlib
 
-(Optional: CUDA-enabled GPU for faster training.)
+---
 
-## Results
-The fine-tuned model achieved an excellent **Test Accuracy of approximately 94%** on the EuroSAT dataset.
-- **Train Accuracy**: ~93.54%
-- **Validation Accuracy**: ~94.69%
-- **Classification Report**:
-  - Precision and Recall above 90% for major classes like Forest, SeaLake, Residential.
+## 🚀 Setup Instructions
 
-Confusion matrix and accuracy curves demonstrate strong model performance across different land cover types.
+> 💡 Recommended: Use Google Colab or a local Python environment
 
-## Contributors
-- Satyawan Singh
-- Shreyash Wankhade
+Install required libraries:
+```bash
+pip install torch torchvision scikit-learn seaborn matplotlib
+```
 
-## Acknowledgements
-- EuroSAT Dataset by Patrick Helber.
-- PyTorch and Torchvision libraries.
+To train and evaluate:
+1. Open `eurosat_cnn_classification.ipynb`
+2. Run cells sequentially to:
+   - Load EuroSAT RGB dataset
+   - Fine-tune ResNet-18
+   - Evaluate model
+   - Visualize predictions
+
+---
+
+## 👨‍💻 Contributors
+
+- **Satyawan Singh**
+- **Shreyash Wankhade**
+
+---
+
+## 🏅 Recognition
+
+This project was submitted as part of the **AI for Space** module and received **90% marks** for its performance, clarity, and practical application of AI in remote sensing.
+
+---
+
+## 📎 Acknowledgements
+
+- Dataset: [EuroSAT](https://github.com/phelber/eurosat) by Patrick Helber
+- Frameworks: PyTorch, Torchvision
+- University of Leicester — MSc AI for Business Intelligence
+
+---
+
+## 📽️ Demo
+
+Watch the short video demonstration: `demo_video.mp4`
+
+---
+
+## 🌐 License
+
+Open for academic use and showcasing only.
+Commercial or large-scale deployments should cite original dataset and model authors.
