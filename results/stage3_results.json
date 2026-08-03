@@ -1,0 +1,667 @@
+{
+  "summary": {
+    "n_seeds": 5,
+    "alpha": 0.1,
+    "ood_rule": "energy > q95(cal)",
+    "gate": {
+      "teacher": {
+        "clean": {
+          "accept_rate": {
+            "mean": 0.8961480855941772,
+            "std": 0.007315463852137327
+          },
+          "refusal_conformal": {
+            "mean": 0.09906172752380371,
+            "std": 0.008834539912641048
+          },
+          "refusal_ood": {
+            "mean": 0.05165432021021843,
+            "std": 0.0015944575425237417
+          },
+          "refusal_either": {
+            "mean": 0.10385185480117798,
+            "std": 0.007315479684621096
+          },
+          "err_all": {
+            "mean": 0.020148146897554398,
+            "std": 0.0009658080525696278
+          },
+          "err_accepted": {
+            "mean": 0.0033041152637451887,
+            "std": 0.0005005790153518319
+          }
+        },
+        "noise": {
+          "accept_rate": {
+            "mean": 0.9557037353515625,
+            "std": 0.01573152095079422
+          },
+          "refusal_conformal": {
+            "mean": 0.04409876465797424,
+            "std": 0.015669384971261024
+          },
+          "refusal_ood": {
+            "mean": 0.01451851986348629,
+            "std": 0.013172787614166737
+          },
+          "refusal_either": {
+            "mean": 0.04429629445075989,
+            "std": 0.015731515362858772
+          },
+          "err_all": {
+            "mean": 0.8688395619392395,
+            "std": 0.010761864483356476
+          },
+          "err_accepted": {
+            "mean": 0.8771241307258606,
+            "std": 0.009747539646923542
+          }
+        },
+        "blur": {
+          "accept_rate": {
+            "mean": 0.48503702878952026,
+            "std": 0.041665371507406235
+          },
+          "refusal_conformal": {
+            "mean": 0.4942222237586975,
+            "std": 0.044707927852869034
+          },
+          "refusal_ood": {
+            "mean": 0.45264196395874023,
+            "std": 0.057214315980672836
+          },
+          "refusal_either": {
+            "mean": 0.5149629712104797,
+            "std": 0.04166537523269653
+          },
+          "err_all": {
+            "mean": 0.4964938163757324,
+            "std": 0.025418538600206375
+          },
+          "err_accepted": {
+            "mean": 0.35034269094467163,
+            "std": 0.0159797091037035
+          }
+        },
+        "bright": {
+          "accept_rate": {
+            "mean": 0.598469078540802,
+            "std": 0.022563496604561806
+          },
+          "refusal_conformal": {
+            "mean": 0.38098764419555664,
+            "std": 0.030466074123978615
+          },
+          "refusal_ood": {
+            "mean": 0.3351111114025116,
+            "std": 0.011971356347203255
+          },
+          "refusal_either": {
+            "mean": 0.40153083205223083,
+            "std": 0.022563504055142403
+          },
+          "err_all": {
+            "mean": 0.13856789469718933,
+            "std": 0.01497282087802887
+          },
+          "err_accepted": {
+            "mean": 0.01959875598549843,
+            "std": 0.0038637896068394184
+          }
+        }
+      },
+      "student": {
+        "clean": {
+          "accept_rate": {
+            "mean": 0.9311111569404602,
+            "std": 0.012934130616486073
+          },
+          "refusal_conformal": {
+            "mean": 0.03920987620949745,
+            "std": 0.01743006892502308
+          },
+          "refusal_ood": {
+            "mean": 0.04790123552083969,
+            "std": 0.005769541021436453
+          },
+          "refusal_either": {
+            "mean": 0.06888888776302338,
+            "std": 0.01293412409722805
+          },
+          "err_all": {
+            "mean": 0.08227160573005676,
+            "std": 0.0038663861341774464
+          },
+          "err_accepted": {
+            "mean": 0.05650441721081734,
+            "std": 0.004220214672386646
+          }
+        },
+        "noise": {
+          "accept_rate": {
+            "mean": 0.965283989906311,
+            "std": 0.05193544924259186
+          },
+          "refusal_conformal": {
+            "mean": 0.02745679020881653,
+            "std": 0.04001044109463692
+          },
+          "refusal_ood": {
+            "mean": 0.014617284759879112,
+            "std": 0.02675420045852661
+          },
+          "refusal_either": {
+            "mean": 0.03471605107188225,
+            "std": 0.05193543806672096
+          },
+          "err_all": {
+            "mean": 0.8551605343818665,
+            "std": 0.011662050150334835
+          },
+          "err_accepted": {
+            "mean": 0.8560351133346558,
+            "std": 0.013919418677687645
+          }
+        },
+        "blur": {
+          "accept_rate": {
+            "mean": 0.8313579559326172,
+            "std": 0.0417630709707737
+          },
+          "refusal_conformal": {
+            "mean": 0.10543209314346313,
+            "std": 0.0465836338698864
+          },
+          "refusal_ood": {
+            "mean": 0.11911110579967499,
+            "std": 0.02262973226606846
+          },
+          "refusal_either": {
+            "mean": 0.16864196956157684,
+            "std": 0.04176308214664459
+          },
+          "err_all": {
+            "mean": 0.5700740814208984,
+            "std": 0.025499967858195305
+          },
+          "err_accepted": {
+            "mean": 0.5410751104354858,
+            "std": 0.03017759695649147
+          }
+        },
+        "bright": {
+          "accept_rate": {
+            "mean": 0.6435555815696716,
+            "std": 0.04093579947948456
+          },
+          "refusal_conformal": {
+            "mean": 0.1675061732530594,
+            "std": 0.07080106437206268
+          },
+          "refusal_ood": {
+            "mean": 0.33032098412513733,
+            "std": 0.024345356971025467
+          },
+          "refusal_either": {
+            "mean": 0.35644444823265076,
+            "std": 0.040935784578323364
+          },
+          "err_all": {
+            "mean": 0.6317530870437622,
+            "std": 0.028266262263059616
+          },
+          "err_accepted": {
+            "mean": 0.5511897802352905,
+            "std": 0.05051659792661667
+          }
+        }
+      }
+    },
+    "student_params": 31946,
+    "student_int8_bytes": 58519,
+    "teacher_int8_bytes": 11312719,
+    "runtime_s": 131.6
+  },
+  "rows": [
+    {
+      "accept_rate": 0.8962963223457336,
+      "refusal_conformal": 0.09604938328266144,
+      "refusal_ood": 0.05135802552103996,
+      "refusal_either": 0.10370370000600815,
+      "err_all": 0.0192592591047287,
+      "err_accepted": 0.003856749311294766,
+      "seed": 0,
+      "model": "teacher",
+      "corruption": "clean"
+    },
+    {
+      "accept_rate": 0.9474074244499207,
+      "refusal_conformal": 0.052345678210258484,
+      "refusal_ood": 0.010123456828296185,
+      "refusal_either": 0.05259259417653084,
+      "err_all": 0.8627160787582397,
+      "err_accepted": 0.8751628876726609,
+      "seed": 0,
+      "model": "teacher",
+      "corruption": "noise"
+    },
+    {
+      "accept_rate": 0.5086419582366943,
+      "refusal_conformal": 0.4654321074485779,
+      "refusal_ood": 0.43654319643974304,
+      "refusal_either": 0.4913580119609833,
+      "err_all": 0.4775308668613434,
+      "err_accepted": 0.34514563106796114,
+      "seed": 0,
+      "model": "teacher",
+      "corruption": "blur"
+    },
+    {
+      "accept_rate": 0.5733333230018616,
+      "refusal_conformal": 0.4143209755420685,
+      "refusal_ood": 0.3404938280582428,
+      "refusal_either": 0.4266666769981384,
+      "err_all": 0.15037037432193756,
+      "err_accepted": 0.01636520241171404,
+      "seed": 0,
+      "model": "teacher",
+      "corruption": "bright"
+    },
+    {
+      "accept_rate": 0.9172839522361755,
+      "refusal_conformal": 0.057283949106931686,
+      "refusal_ood": 0.05308641865849495,
+      "refusal_either": 0.08271604776382446,
+      "err_all": 0.0819753110408783,
+      "err_accepted": 0.05006729475100942,
+      "seed": 0,
+      "model": "student",
+      "corruption": "clean"
+    },
+    {
+      "accept_rate": 0.872592568397522,
+      "refusal_conformal": 0.09876543283462524,
+      "refusal_ood": 0.06222222372889519,
+      "refusal_either": 0.12740740180015564,
+      "err_all": 0.8454321026802063,
+      "err_accepted": 0.8398415393322015,
+      "seed": 0,
+      "model": "student",
+      "corruption": "noise"
+    },
+    {
+      "accept_rate": 0.82419753074646,
+      "refusal_conformal": 0.13506172597408295,
+      "refusal_ood": 0.10074073821306229,
+      "refusal_either": 0.17580246925354004,
+      "err_all": 0.5720987915992737,
+      "err_accepted": 0.5443379269023367,
+      "seed": 0,
+      "model": "student",
+      "corruption": "blur"
+    },
+    {
+      "accept_rate": 0.5819752812385559,
+      "refusal_conformal": 0.26271605491638184,
+      "refusal_ood": 0.3669135868549347,
+      "refusal_either": 0.4180246889591217,
+      "err_all": 0.6429629921913147,
+      "err_accepted": 0.5396690708527789,
+      "seed": 0,
+      "model": "student",
+      "corruption": "bright"
+    },
+    {
+      "accept_rate": 0.9007407426834106,
+      "refusal_conformal": 0.09037037193775177,
+      "refusal_ood": 0.05259259417653084,
+      "refusal_either": 0.09925925731658936,
+      "err_all": 0.0192592591047287,
+      "err_accepted": 0.00356359649122807,
+      "seed": 1,
+      "model": "teacher",
+      "corruption": "clean"
+    },
+    {
+      "accept_rate": 0.9738271832466125,
+      "refusal_conformal": 0.025925925001502037,
+      "refusal_ood": 0.0012345679569989443,
+      "refusal_either": 0.026172839105129242,
+      "err_all": 0.8812345862388611,
+      "err_accepted": 0.8874239350912779,
+      "seed": 1,
+      "model": "teacher",
+      "corruption": "noise"
+    },
+    {
+      "accept_rate": 0.4553086459636688,
+      "refusal_conformal": 0.5153086185455322,
+      "refusal_ood": 0.5022222399711609,
+      "refusal_either": 0.5446913838386536,
+      "err_all": 0.5318518280982971,
+      "err_accepted": 0.37418655097613884,
+      "seed": 1,
+      "model": "teacher",
+      "corruption": "blur"
+    },
+    {
+      "accept_rate": 0.6348147988319397,
+      "refusal_conformal": 0.3311111032962799,
+      "refusal_ood": 0.31654322147369385,
+      "refusal_either": 0.3651851713657379,
+      "err_all": 0.11728394776582718,
+      "err_accepted": 0.015169194865810968,
+      "seed": 1,
+      "model": "teacher",
+      "corruption": "bright"
+    },
+    {
+      "accept_rate": 0.9311110973358154,
+      "refusal_conformal": 0.03975308686494827,
+      "refusal_ood": 0.046666666865348816,
+      "refusal_either": 0.06888888776302338,
+      "err_all": 0.08222222328186035,
+      "err_accepted": 0.0575444179262795,
+      "seed": 1,
+      "model": "student",
+      "corruption": "clean"
+    },
+    {
+      "accept_rate": 0.9834567904472351,
+      "refusal_conformal": 0.01209876500070095,
+      "refusal_ood": 0.0069135804660618305,
+      "refusal_either": 0.016543209552764893,
+      "err_all": 0.8706172704696655,
+      "err_accepted": 0.8714536781320613,
+      "seed": 1,
+      "model": "student",
+      "corruption": "noise"
+    },
+    {
+      "accept_rate": 0.828641951084137,
+      "refusal_conformal": 0.09506172686815262,
+      "refusal_ood": 0.12913580238819122,
+      "refusal_either": 0.17135801911354065,
+      "err_all": 0.5301234722137451,
+      "err_accepted": 0.5,
+      "seed": 1,
+      "model": "student",
+      "corruption": "blur"
+    },
+    {
+      "accept_rate": 0.6800000071525574,
+      "refusal_conformal": 0.128148153424263,
+      "refusal_ood": 0.3024691343307495,
+      "refusal_either": 0.3199999928474426,
+      "err_all": 0.6720987558364868,
+      "err_accepted": 0.5962236746550472,
+      "seed": 1,
+      "model": "student",
+      "corruption": "bright"
+    },
+    {
+      "accept_rate": 0.9041975140571594,
+      "refusal_conformal": 0.09456790238618851,
+      "refusal_ood": 0.049135804176330566,
+      "refusal_either": 0.09580247104167938,
+      "err_all": 0.019999999552965164,
+      "err_accepted": 0.0032768978700163844,
+      "seed": 2,
+      "model": "teacher",
+      "corruption": "clean"
+    },
+    {
+      "accept_rate": 0.9407407641410828,
+      "refusal_conformal": 0.05901234596967697,
+      "refusal_ood": 0.03283950686454773,
+      "refusal_either": 0.05925925821065903,
+      "err_all": 0.8659259080886841,
+      "err_accepted": 0.8758530183727035,
+      "seed": 2,
+      "model": "teacher",
+      "corruption": "noise"
+    },
+    {
+      "accept_rate": 0.5407407283782959,
+      "refusal_conformal": 0.4355555474758148,
+      "refusal_ood": 0.4054321050643921,
+      "refusal_either": 0.4592592716217041,
+      "err_all": 0.4708642065525055,
+      "err_accepted": 0.3584474885844749,
+      "seed": 2,
+      "model": "teacher",
+      "corruption": "blur"
+    },
+    {
+      "accept_rate": 0.6000000238418579,
+      "refusal_conformal": 0.3849382698535919,
+      "refusal_ood": 0.3454321026802063,
+      "refusal_either": 0.4000000059604645,
+      "err_all": 0.12839506566524506,
+      "err_accepted": 0.019753086419753086,
+      "seed": 2,
+      "model": "teacher",
+      "corruption": "bright"
+    },
+    {
+      "accept_rate": 0.9459259510040283,
+      "refusal_conformal": 0.01209876500070095,
+      "refusal_ood": 0.04962962865829468,
+      "refusal_either": 0.05407407507300377,
+      "err_all": 0.07728394865989685,
+      "err_accepted": 0.05664317410597755,
+      "seed": 2,
+      "model": "student",
+      "corruption": "clean"
+    },
+    {
+      "accept_rate": 0.9930863976478577,
+      "refusal_conformal": 0.003950617276132107,
+      "refusal_ood": 0.0034567902330309153,
+      "refusal_either": 0.0069135804660618305,
+      "err_all": 0.8419753313064575,
+      "err_accepted": 0.8431128791645948,
+      "seed": 2,
+      "model": "student",
+      "corruption": "noise"
+    },
+    {
+      "accept_rate": 0.9004938006401062,
+      "refusal_conformal": 0.028888888657093048,
+      "refusal_ood": 0.09308642148971558,
+      "refusal_either": 0.09950616955757141,
+      "err_all": 0.5886420011520386,
+      "err_accepted": 0.5730737592541815,
+      "seed": 2,
+      "model": "student",
+      "corruption": "blur"
+    },
+    {
+      "accept_rate": 0.6775308847427368,
+      "refusal_conformal": 0.07407407462596893,
+      "refusal_ood": 0.3202469050884247,
+      "refusal_either": 0.32246914505958557,
+      "err_all": 0.6239506006240845,
+      "err_accepted": 0.5860058309037901,
+      "seed": 2,
+      "model": "student",
+      "corruption": "bright"
+    },
+    {
+      "accept_rate": 0.8945679068565369,
+      "refusal_conformal": 0.10098765790462494,
+      "refusal_ood": 0.051851850003004074,
+      "refusal_either": 0.10543210059404373,
+      "err_all": 0.02074074000120163,
+      "err_accepted": 0.0033121722329561135,
+      "seed": 3,
+      "model": "teacher",
+      "corruption": "clean"
+    },
+    {
+      "accept_rate": 0.9716049432754517,
+      "refusal_conformal": 0.028395062312483788,
+      "refusal_ood": 0.005185185000300407,
+      "refusal_either": 0.028395062312483788,
+      "err_all": 0.8785185217857361,
+      "err_accepted": 0.8846251588310038,
+      "seed": 3,
+      "model": "teacher",
+      "corruption": "noise"
+    },
+    {
+      "accept_rate": 0.48444443941116333,
+      "refusal_conformal": 0.5041975378990173,
+      "refusal_ood": 0.3960493803024292,
+      "refusal_either": 0.5155555605888367,
+      "err_all": 0.48938271403312683,
+      "err_accepted": 0.33588175331294595,
+      "seed": 3,
+      "model": "teacher",
+      "corruption": "blur"
+    },
+    {
+      "accept_rate": 0.5918518304824829,
+      "refusal_conformal": 0.38419753313064575,
+      "refusal_ood": 0.32987654209136963,
+      "refusal_either": 0.4081481397151947,
+      "err_all": 0.14641974866390228,
+      "err_accepted": 0.024196912807676264,
+      "seed": 3,
+      "model": "teacher",
+      "corruption": "bright"
+    },
+    {
+      "accept_rate": 0.9419752955436707,
+      "refusal_conformal": 0.03580246865749359,
+      "refusal_ood": 0.0385185182094574,
+      "refusal_either": 0.05802468955516815,
+      "err_all": 0.08172839134931564,
+      "err_accepted": 0.0618610747051114,
+      "seed": 3,
+      "model": "student",
+      "corruption": "clean"
+    },
+    {
+      "accept_rate": 0.9898765683174133,
+      "refusal_conformal": 0.009876543655991554,
+      "refusal_ood": 0.0002469135797582567,
+      "refusal_either": 0.010123456828296185,
+      "err_all": 0.860987663269043,
+      "err_accepted": 0.865552506859566,
+      "seed": 3,
+      "model": "student",
+      "corruption": "noise"
+    },
+    {
+      "accept_rate": 0.8155555725097656,
+      "refusal_conformal": 0.12419752776622772,
+      "refusal_ood": 0.1232098788022995,
+      "refusal_either": 0.18444444239139557,
+      "err_all": 0.595061719417572,
+      "err_accepted": 0.5652437178322737,
+      "seed": 3,
+      "model": "student",
+      "corruption": "blur"
+    },
+    {
+      "accept_rate": 0.6251851916313171,
+      "refusal_conformal": 0.1854320913553238,
+      "refusal_ood": 0.33975309133529663,
+      "refusal_either": 0.37481480836868286,
+      "err_all": 0.5953086614608765,
+      "err_accepted": 0.4695892575039494,
+      "seed": 3,
+      "model": "student",
+      "corruption": "bright"
+    },
+    {
+      "accept_rate": 0.8849382996559143,
+      "refusal_conformal": 0.1133333370089531,
+      "refusal_ood": 0.0533333346247673,
+      "refusal_either": 0.11506173014640808,
+      "err_all": 0.021481482312083244,
+      "err_accepted": 0.0025111607142857145,
+      "seed": 4,
+      "model": "teacher",
+      "corruption": "clean"
+    },
+    {
+      "accept_rate": 0.9449382424354553,
+      "refusal_conformal": 0.054814815521240234,
+      "refusal_ood": 0.02320987731218338,
+      "refusal_either": 0.05506172776222229,
+      "err_all": 0.8558024764060974,
+      "err_accepted": 0.86255552652208,
+      "seed": 4,
+      "model": "teacher",
+      "corruption": "noise"
+    },
+    {
+      "accept_rate": 0.43604937195777893,
+      "refusal_conformal": 0.5506172776222229,
+      "refusal_ood": 0.5229629874229431,
+      "refusal_either": 0.5639505982398987,
+      "err_all": 0.5128394961357117,
+      "err_accepted": 0.3380520951302378,
+      "seed": 4,
+      "model": "teacher",
+      "corruption": "blur"
+    },
+    {
+      "accept_rate": 0.592345654964447,
+      "refusal_conformal": 0.39037036895751953,
+      "refusal_ood": 0.3432098627090454,
+      "refusal_either": 0.4076543152332306,
+      "err_all": 0.15037037432193756,
+      "err_accepted": 0.022509378907878283,
+      "seed": 4,
+      "model": "teacher",
+      "corruption": "bright"
+    },
+    {
+      "accept_rate": 0.919259250164032,
+      "refusal_conformal": 0.05111110955476761,
+      "refusal_ood": 0.05160493776202202,
+      "refusal_either": 0.08074074238538742,
+      "err_all": 0.08814814686775208,
+      "err_accepted": 0.05640612409347301,
+      "seed": 4,
+      "model": "student",
+      "corruption": "clean"
+    },
+    {
+      "accept_rate": 0.987407386302948,
+      "refusal_conformal": 0.012592592276632786,
+      "refusal_ood": 0.0002469135797582567,
+      "refusal_either": 0.012592592276632786,
+      "err_all": 0.8567901253700256,
+      "err_accepted": 0.8602150537634409,
+      "seed": 4,
+      "model": "student",
+      "corruption": "noise"
+    },
+    {
+      "accept_rate": 0.7879012227058411,
+      "refusal_conformal": 0.14395061135292053,
+      "refusal_ood": 0.14938271045684814,
+      "refusal_either": 0.21209876239299774,
+      "err_all": 0.5644444227218628,
+      "err_accepted": 0.5227201504230649,
+      "seed": 4,
+      "model": "student",
+      "corruption": "blur"
+    },
+    {
+      "accept_rate": 0.6530864238739014,
+      "refusal_conformal": 0.18716049194335938,
+      "refusal_ood": 0.3222222328186035,
+      "refusal_either": 0.34691357612609863,
+      "err_all": 0.6244444251060486,
+      "err_accepted": 0.5644612476370511,
+      "seed": 4,
+      "model": "student",
+      "corruption": "bright"
+    }
+  ]
+}
