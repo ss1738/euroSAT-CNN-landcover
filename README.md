@@ -23,6 +23,9 @@ Sweeping the envelope's lower bound flags between 12% and 40% of blurred inputs,
 Ladder (n=5): distilled students at 99.5 KB, 42.8 KB and 25.4 KB INT8 hold 94.8%, 92.5% and 89.0% accuracy with residual risk 2.1%, 4.7% and 9.4%. Noise blocking stays at 100% at every size because the input-space check does not depend on the model. That is a 450x size reduction with the assurance cost measured rather than assumed.
 SEU study (10 trials per level): single weight bit flips have no measurable effect; at 100 flips the teacher falls to 55.6% accuracy while the gate still accepts 76.6% of inputs, 41.6% of them wrong. Output-side monitoring cannot detect weight corruption. Memory integrity protection (weight digests, EDAC) is a separate and necessary layer, and is what the downstream verified kernel's self-integrity check provides.
 
+## 7. Multispectral: the gate transfers, and five bands buy most of the value (n=3)
+Re-running the stack on the full 13-band Sentinel-2 EuroSAT (uint16 TIFs, 2 GB): conformal coverage lands on target (90.06% vs 90%), clean residual risk is 0.70% at 88.1% acceptance for the small model, and the input-statistics check again blocks 100% of noisy inputs. Band-selection curve (same small CNN, bytes = per-tile sensor data): RGB-3 92.0% at 24.6 KB; RGB+NIR+SWIR (5 bands) 95.9% at 41 KB; 8 bands 96.6% at 65.5 KB; all 13 bands 96.8% at 106.5 KB. Five bands capture about 97% of the 13-band accuracy at 38% of the data budget, and the marginal value of a band collapses after 8. Spectral choice matters more than model capacity at this scale: the 5-band small model beats the RGB one by 4 points.
+
 ## Architecture this feeds
 ```
 raw image .. input-stats envelope ..\
@@ -38,7 +41,7 @@ INT8 classifier .. conformal sets ...+-- ACCEPT/REFUSE --> formally verified act
 
 ## Repo map
 - `coursework/`: the original module project (report, slides, notebook, demo video; graded 90%)
-- `experiments/eurosat_stage1..6.py`: one self-contained script per stage
+- `experiments/eurosat_stage1..7.py`: one self-contained script per stage
 - `results/*.json`: raw measured outputs (per-seed rows and aggregates) behind every number above
 
 MSc AI for Business Intelligence, University of Leicester. Experiments August 2026.

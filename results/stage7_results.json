@@ -1,0 +1,315 @@
+{
+  "summary": {
+    "n_seeds": 3,
+    "alpha": 0.1,
+    "gate_ms": {
+      "resnet13": {
+        "clean": {
+          "acc": {
+            "mean": 0.9765431880950928,
+            "std": 0.0034302317071706057
+          },
+          "accept_rate": {
+            "mean": 0.8911933898925781,
+            "std": 0.005766013171523809
+          },
+          "cov": {
+            "mean": 0.9066666960716248,
+            "std": 0.002749530365690589
+          },
+          "err_accepted": {
+            "mean": 0.0044272649101912975,
+            "std": 0.0018018226837739348
+          }
+        },
+        "noise": {
+          "acc": {
+            "mean": 0.09662550687789917,
+            "std": 0.012207459658384323
+          },
+          "accept_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "cov": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "err_accepted": {
+            "mean": 0.0,
+            "std": 0.0
+          }
+        }
+      },
+      "tiny13": {
+        "clean": {
+          "acc": {
+            "mean": 0.9684773087501526,
+            "std": 0.002497754991054535
+          },
+          "accept_rate": {
+            "mean": 0.8806584477424622,
+            "std": 0.012036435306072235
+          },
+          "cov": {
+            "mean": 0.900576114654541,
+            "std": 0.00761173153296113
+          },
+          "err_accepted": {
+            "mean": 0.006987202912569046,
+            "std": 0.0028228145092725754
+          }
+        },
+        "noise": {
+          "acc": {
+            "mean": 0.09069959074258804,
+            "std": 0.004621528089046478
+          },
+          "accept_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "cov": {
+            "mean": 0.09061727672815323,
+            "std": 0.0045729028061032295
+          },
+          "err_accepted": {
+            "mean": 0.0,
+            "std": 0.0
+          }
+        }
+      }
+    },
+    "band_curve": {
+      "rgb3": {
+        "nbands": 3,
+        "bytes_per_tile": 24576,
+        "acc": {
+          "mean": 0.9200822710990906,
+          "std": 0.006277288310229778
+        }
+      },
+      "nir5": {
+        "nbands": 5,
+        "bytes_per_tile": 40960,
+        "acc": {
+          "mean": 0.9590123295783997,
+          "std": 0.002505882643163204
+        }
+      },
+      "b8": {
+        "nbands": 8,
+        "bytes_per_tile": 65536,
+        "acc": {
+          "mean": 0.9657613635063171,
+          "std": 0.0018200468039140105
+        }
+      },
+      "all13": {
+        "nbands": 13,
+        "bytes_per_tile": 106496,
+        "acc": {
+          "mean": 0.9684773087501526,
+          "std": 0.002497754991054535
+        }
+      }
+    },
+    "runtime_s": 844.8
+  },
+  "rows": [
+    {
+      "seed": 0,
+      "model": "resnet13",
+      "corruption": "clean",
+      "acc": 0.9782716035842896,
+      "accept_rate": 0.8962963223457336,
+      "cov": 0.9096296429634094,
+      "err_accepted": 0.004683195592286501
+    },
+    {
+      "seed": 0,
+      "model": "resnet13",
+      "corruption": "noise",
+      "acc": 0.11061728745698929,
+      "accept_rate": 0.0,
+      "cov": 0.0,
+      "err_accepted": 0.0
+    },
+    {
+      "seed": 0,
+      "model": "tiny13",
+      "corruption": "clean",
+      "acc": 0.9713580012321472,
+      "accept_rate": 0.8792592883110046,
+      "cov": 0.8980246782302856,
+      "err_accepted": 0.005054759898904802
+    },
+    {
+      "seed": 0,
+      "model": "tiny13",
+      "corruption": "noise",
+      "acc": 0.09259258955717087,
+      "accept_rate": 0.0,
+      "cov": 0.09234567731618881,
+      "err_accepted": 0.0
+    },
+    {
+      "seed": 1,
+      "model": "resnet13",
+      "corruption": "clean",
+      "acc": 0.9787654280662537,
+      "accept_rate": 0.8849382996559143,
+      "cov": 0.9041975140571594,
+      "err_accepted": 0.0025111607142857145
+    },
+    {
+      "seed": 1,
+      "model": "resnet13",
+      "corruption": "noise",
+      "acc": 0.08814814686775208,
+      "accept_rate": 0.0,
+      "cov": 0.0,
+      "err_accepted": 0.0
+    },
+    {
+      "seed": 1,
+      "model": "tiny13",
+      "corruption": "clean",
+      "acc": 0.9669135808944702,
+      "accept_rate": 0.8693827390670776,
+      "cov": 0.8945679068565369,
+      "err_accepted": 0.005680204487361545
+    },
+    {
+      "seed": 1,
+      "model": "tiny13",
+      "corruption": "noise",
+      "acc": 0.0940740704536438,
+      "accept_rate": 0.0,
+      "cov": 0.0940740704536438,
+      "err_accepted": 0.0
+    },
+    {
+      "seed": 2,
+      "model": "resnet13",
+      "corruption": "clean",
+      "acc": 0.9725925922393799,
+      "accept_rate": 0.892345666885376,
+      "cov": 0.9061728119850159,
+      "err_accepted": 0.006087437742114001
+    },
+    {
+      "seed": 2,
+      "model": "resnet13",
+      "corruption": "noise",
+      "acc": 0.09111110866069794,
+      "accept_rate": 0.0,
+      "cov": 0.0,
+      "err_accepted": 0.0
+    },
+    {
+      "seed": 2,
+      "model": "tiny13",
+      "corruption": "clean",
+      "acc": 0.9671605229377747,
+      "accept_rate": 0.8933333158493042,
+      "cov": 0.9091358184814453,
+      "err_accepted": 0.010226644555002764
+    },
+    {
+      "seed": 2,
+      "model": "tiny13",
+      "corruption": "noise",
+      "acc": 0.08543209731578827,
+      "accept_rate": 0.0,
+      "cov": 0.08543209731578827,
+      "err_accepted": 0.0
+    }
+  ],
+  "band_rows": [
+    {
+      "seed": 0,
+      "subset": "rgb3",
+      "nbands": 3,
+      "acc": 0.9128395318984985,
+      "bytes_per_tile": 24576
+    },
+    {
+      "seed": 0,
+      "subset": "nir5",
+      "nbands": 5,
+      "acc": 0.9595061540603638,
+      "bytes_per_tile": 40960
+    },
+    {
+      "seed": 0,
+      "subset": "b8",
+      "nbands": 8,
+      "acc": 0.9637036919593811,
+      "bytes_per_tile": 65536
+    },
+    {
+      "seed": 0,
+      "subset": "all13",
+      "nbands": 13,
+      "acc": 0.9713580012321472,
+      "bytes_per_tile": 106496
+    },
+    {
+      "seed": 1,
+      "subset": "rgb3",
+      "nbands": 3,
+      "acc": 0.9239506125450134,
+      "bytes_per_tile": 24576
+    },
+    {
+      "seed": 1,
+      "subset": "nir5",
+      "nbands": 5,
+      "acc": 0.9612345695495605,
+      "bytes_per_tile": 40960
+    },
+    {
+      "seed": 1,
+      "subset": "b8",
+      "nbands": 8,
+      "acc": 0.9664197564125061,
+      "bytes_per_tile": 65536
+    },
+    {
+      "seed": 1,
+      "subset": "all13",
+      "nbands": 13,
+      "acc": 0.9669135808944702,
+      "bytes_per_tile": 106496
+    },
+    {
+      "seed": 2,
+      "subset": "rgb3",
+      "nbands": 3,
+      "acc": 0.9234567880630493,
+      "bytes_per_tile": 24576
+    },
+    {
+      "seed": 2,
+      "subset": "nir5",
+      "nbands": 5,
+      "acc": 0.9562963247299194,
+      "bytes_per_tile": 40960
+    },
+    {
+      "seed": 2,
+      "subset": "b8",
+      "nbands": 8,
+      "acc": 0.9671605229377747,
+      "bytes_per_tile": 65536
+    },
+    {
+      "seed": 2,
+      "subset": "all13",
+      "nbands": 13,
+      "acc": 0.9671605229377747,
+      "bytes_per_tile": 106496
+    }
+  ]
+}
