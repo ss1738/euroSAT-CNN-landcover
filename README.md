@@ -76,6 +76,14 @@ Under a simulated 24-week progressive sensor degradation (noise and brightness d
 
 ![Drift study](figures/drift.png)
 
+## Closed loop, running in flight software
+The stack below is not a diagram: it runs. The perception verdicts in this repo were replayed into
+a formally verified action gate inside NASA cFS, where every refusal blocked the actuation and was
+replaced by a verified safe fallback, with the model's Assurance Card digest checked at boot
+(8 accepted, 7 refused, 7 actions gated). Log and reproduction:
+[vaelon-core CONVERGENCE.md](https://github.com/ss1738/vaelon-core/blob/main/integrations/cfs/CONVERGENCE.md)
+(private repo, access on request).
+
 ## Architecture this feeds
 ```
 raw image .. input-stats envelope ..\
