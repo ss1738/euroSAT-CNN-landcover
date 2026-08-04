@@ -2,7 +2,7 @@
 
 This repo started as an MSc AI for Space group project (University of Leicester, graded 90%, see `coursework/`): a ResNet-18 classifier for EuroSAT satellite imagery. I have since rebuilt it into a measured research project: an onboard-class EO classifier with layered assurance (calibrated refusal, out-of-distribution monitoring, compression/assurance trade-offs, and radiation-fault behaviour), built as the perception front end for a formally verified action-gating kernel (separate project). Everything below is measured. The scripts in `experiments/` and the raw outputs in `results/` reproduce all of it (single RTX 5090, EuroSAT RGB, fixed splits and seeds).
 
-Ten findings, in the order I found them:
+Eleven findings, in the order I found them:
 
 ## 1. Quantization silently breaks conformal guarantees (n=20 seeds)
 If you calibrate split conformal prediction on the FP32 model and reuse that calibration on the INT8 deployment artifact, coverage falls below target at every alpha tested (for example 88.8% +/- 0.8 against a 90% target, widening to a 2-point gap at alpha 0.15). INT8 itself costs almost no accuracy (98.13% to 98.03%). Recalibrating on the quantized model restores target coverage. The practical rule: calibrate the artifact that flies, not the model you trained.
@@ -48,6 +48,11 @@ Testing the non-exchangeable conformal bound (Barber et al. 2023: coverage canno
 Repeating the stage-9 test on a 2x2 grid (EuroSAT and CIFAR-10; ResNet18 and MobileNetV3-Small) at 5 bit-widths: the coverage bound held in every one of the 60 runs. Tightness varies systematically: on EuroSAT (a peaked, high-confidence task) the deficit sits close to the TV distance (0.78 vs 0.80 at 3-bit for ResNet18), while on CIFAR-10 the bound is conservative (deficit 0.37 vs TV 0.53), so the forecast overestimates the loss rather than underestimating it. The practical rule survives intact and errs safe: TV distance computed on the labeled calibration set upper-bounds the coverage loss everywhere tested, and approaches equality on concentrated score distributions. A secondary observation: MobileNetV3 is far more quantization-fragile than ResNet18 at 4-bit on EuroSAT (deficit 0.62 vs 0.24), consistent with per-channel quantization hitting depthwise convolutions hardest.
 
 ![Generality of the bound](figures/generality.png)
+
+## 11. The efficiency law: recalibrated sets stay valid but collapse to uninformative below a knee (n=3)
+From the stage-10 grid, mean prediction-set size after recalibration: roughly one class down to 6-bit (0.91 to 1.24 across cells), a knee at 4-bit (1.1 for EuroSAT ResNet18 but already 4.9 for MobileNetV3), explosion at 3-bit (5.2 to 9.4 classes) and saturation at 2-bit (sets contain nearly all 10 classes). Combined with findings 9 and 10 this completes the picture: validity is always recoverable by recalibration, but informativeness has a precision floor, and the floor arrives one full bit earlier for MobileNetV3 than for ResNet18. For deployment this gives a simple acceptance test: after quantization and recalibration, the mean set size on the calibration data tells you whether the compressed model is still worth flying.
+
+![Efficiency collapse](figures/efficiency.png)
 
 ## Architecture this feeds
 ```
