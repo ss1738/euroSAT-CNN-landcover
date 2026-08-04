@@ -63,7 +63,7 @@ and can the damage be predicted in advance?} Our answers:
   invisible to accuracy monitoring.
   \item \textbf{The loss is forecastable} (Sections~\ref{sec:bound},~\ref{sec:tight}).
   The coverage deficit is upper-bounded by the total-variation (TV) distance
-  between reference and deployed score distributions on the calibration set ---
+  between reference and deployed score distributions on the calibration set,
   a quantity computable on the ground, before deployment, with no new data. The
   bound is elementary; the contribution is empirical: it held in 60/60 runs
   across datasets, architectures, and bit-widths, and in the damage regime on
@@ -163,7 +163,7 @@ stark: \emph{calibrate the artifact that ships, not the model that trained}.
 \subsection{Coverage collapse is smooth and tracks the score shift}\label{sec:scaling}
 
 Sweeping precision on EuroSAT/ResNet18 (5 seeds;
-Figure~\ref{fig:scaling}): stale-calibration coverage falls monotonically ---
+Figure~\ref{fig:scaling}): stale-calibration coverage falls monotonically,
 $89.8\%$ (8-bit), $88.9\%$ (6-bit), $66.5\%$ (4-bit), $11.6\%$ (3-bit),
 $1.9\%$ (2-bit) against a 90\% target, tracking the relative weight
 perturbation (1.1\%, 4.4\%, 19.6\%, 42.2\%, 75.2\%) and the mean absolute
