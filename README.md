@@ -2,7 +2,7 @@
 
 This repo started as an MSc AI for Space group project (University of Leicester, graded 90%, see `coursework/`): a ResNet-18 classifier for EuroSAT satellite imagery. I have since rebuilt it into a measured research project: an onboard-class EO classifier with layered assurance (calibrated refusal, out-of-distribution monitoring, compression/assurance trade-offs, and radiation-fault behaviour), built as the perception front end for a formally verified action-gating kernel (separate project). Everything below is measured. The scripts in `experiments/` and the raw outputs in `results/` reproduce all of it (single RTX 5090, EuroSAT RGB, fixed splits and seeds).
 
-Eleven findings, in the order I found them:
+Twelve findings, in the order I found them:
 
 ## 1. Quantization silently breaks conformal guarantees (n=20 seeds)
 If you calibrate split conformal prediction on the FP32 model and reuse that calibration on the INT8 deployment artifact, coverage falls below target at every alpha tested (for example 88.8% +/- 0.8 against a 90% target, widening to a 2-point gap at alpha 0.15). INT8 itself costs almost no accuracy (98.13% to 98.03%). Recalibrating on the quantized model restores target coverage. The practical rule: calibrate the artifact that flies, not the model you trained.
@@ -54,6 +54,11 @@ From the stage-10 grid, mean prediction-set size after recalibration: roughly on
 
 ![Efficiency collapse](figures/efficiency.png)
 
+## 12. Quantized storage is intrinsic radiation containment; FP32 is not (n=3, 8 trials/cell)
+Injecting bit flips into the stored quantized integer weight codes (a faithful stored-weight SEU) versus FP32 float flips: at 8-bit, 100 stored-weight flips cause no measurable damage at all (accuracy 98.2% before and after), because an integer flip is magnitude-bounded by the channel scale. The same 100 flips in FP32 halve accuracy (97.7% to 49.3%) since one exponent-bit flip can inject an arbitrarily large weight, and the score gate stays blind while it happens (88.9% of inputs still accepted, 51% of them wrong). Quantization is therefore not only compression: it is fault containment. Two supporting numbers: 83 to 100% of single flips are output-silent in every format (so no output-side monitor can count faults; integrity checking must be weight-side), and a sha256 hash over all weights costs 4.3x one CPU inference, so hashing every hundredth frame adds about 4% overhead. Caveats: flips were injected into weights only (not scales or activations), on a 2048-image probe.
+
+![SEU factorial](figures/seu_factorial.png)
+
 ## Architecture this feeds
 ```
 raw image .. input-stats envelope ..\
@@ -69,7 +74,7 @@ INT8 classifier .. conformal sets ...+-- ACCEPT/REFUSE --> formally verified act
 
 ## Repo map
 - `coursework/`: the original module project (report, slides, notebook, demo video; graded 90%)
-- `experiments/eurosat_stage1..10.py`: one self-contained script per stage
+- `experiments/eurosat_stage1..11.py`: one self-contained script per stage
 - `results/*.json`: raw measured outputs (per-seed rows and aggregates) behind every number above
 
 MSc AI for Business Intelligence, University of Leicester. Experiments August 2026.
