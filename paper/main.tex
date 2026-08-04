@@ -9,7 +9,7 @@
 
 \title{A Pre-Deployment Audit for Conformal Coverage under Model Compression}
 \author{Satyawan Singh\\
-\small University of Leicester (MSc AI, 2025); independent researcher\\
+\small University of Leicester (MSc, 2025); independent researcher\\
 \small \texttt{satyawansinghinuk@gmail.com}}
 \date{August 2026}
 
@@ -27,7 +27,7 @@ computable upper bound on the resulting coverage deficit; no new data, labels,
 or deployment access is required. Across 2 datasets $\times$ 2 architectures $\times$ 5
 bit-widths (60 runs), the bound held in every run, and in the damage regime on
 peaked score distributions it is nearly tight: at 4-bit and 3-bit precision the
-measured deficit matched the total-variation distance to within 0.003. We
+measured deficit matched the total-variation distance to within 0.004. We
 further characterize what recalibration can and cannot repair: validity is
 restored at every precision tested, including models degraded to 47.8\%
 accuracy, while informativeness collapses past an architecture-dependent
@@ -277,8 +277,9 @@ peaked-task points hug it.}
 
 Recalibration always restores coverage, but the guarantee can be honored
 vacuously. Mean prediction-set size after recalibration
-(Figure~\ref{fig:eff}) stays near one class down to 6-bit (0.91 to 1.24 across
-the grid), passes a knee at 4-bit (1.14 for EuroSAT/ResNet18 but already 4.94
+(Figure~\ref{fig:eff}) stays near one class down to 6-bit in three of the four
+grid cells (0.91 to 1.24; CIFAR-10/MobileNetV3, the weakest model on the harder
+task, starts at 2.9), passes a knee at 4-bit (1.14 for EuroSAT/ResNet18 but already 4.94
 for EuroSAT/MobileNetV3), and explodes at 3-bit (5.2 to 9.4 classes),
 saturating near all 10 classes at 2-bit. Validity and informativeness thus
 separate cleanly under compression: the former is always repairable by
@@ -379,7 +380,7 @@ L.~Marchante~Arjona, P.~Bhattacharjee, and P.~Jung.
   perturbations.
 \newblock In \emph{Proc. COPA, PMLR v266}, 2025.
 
-\bibitem[Anonymous(2026)]{compressionUQ2026}
+\bibitem[Compression-UQ benchmark(2026)]{compressionUQ2026}
 Does compression preserve uncertainty? A benchmark for uncertainty
   quantification in compressed LLMs.
 \newblock arXiv:2606.01850, 2026.

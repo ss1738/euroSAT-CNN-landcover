@@ -18,7 +18,10 @@ behind the README numbers.
 | 10 | Bound generalises 60/60 across 2x2 grid | stage10 | results/stage10_results.json | generality.png |
 | 11 | Efficiency knee (set size vs precision) | stage10 (analysis) | results/stage10_results.json | efficiency.png |
 | 12 | Int storage = SEU containment; flips output-silent | stage11 | results/stage11_results.json | seu_factorial.png |
+| 1 (INT8 detail) | Fresh-clone verified stage-1 run | stage1 | results/results.json | coverage.png |
 | 13 | Drift: refresh the guarantee, not the model | stage12 | results/stage12_results.json | drift.png |
+
+| Paper Tables 2-3 | Baselines, estimators, APS | stage13 | results/stage13_results.json | paper figures |
 
 Companion artifacts: EVIDENCE_PACKAGE.md (qualification framing) ·
 [qualkit](https://github.com/ss1738/qualkit) ·

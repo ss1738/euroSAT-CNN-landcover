@@ -16,7 +16,7 @@ run 3  "3 min"
 run 4  "5 min"
 run 5  "40 min"
 run 6  "15 min"
-if [ -f "$EA_DIR/data/ms/EuroSAT_MS/Forest" ] || [ -d "$EA_DIR/data/ms/EuroSAT_MS" ]; then
+if [ -d "$EA_DIR/data/ms/EuroSAT_MS" ]; then
   run 7 "15 min"
 else
   echo "=== stage 7 SKIPPED: needs the 2GB multispectral zip unpacked to \$EA_DIR/data/ms/ (see script header) ==="
@@ -26,4 +26,5 @@ run 9  "10 min"
 run 10 "60 min (downloads CIFAR-10, 170MB)"
 run 11 "5 min"
 run 12 "15 min"
+run 13 "20 min (paper baselines/estimators)"
 echo "=== all stages complete; regenerate figures with: python3 make_figures.py (run from repo root, reads results from \$EA_DIR if copied to results/) ==="

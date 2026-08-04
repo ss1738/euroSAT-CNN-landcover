@@ -1,6 +1,6 @@
 # EuroSAT Land Cover: from coursework CNN to an assured onboard EO stack
 
-This repo started as an MSc AI for Space group project (University of Leicester, graded 90%, see `coursework/`): a ResNet-18 classifier for EuroSAT satellite imagery. I have since rebuilt it into a measured research project: an onboard-class EO classifier with layered assurance (calibrated refusal, out-of-distribution monitoring, compression/assurance trade-offs, and radiation-fault behaviour), built as the perception front end for a formally verified action-gating kernel (separate project). Everything below is measured. The scripts in `experiments/` and the raw outputs in `results/` reproduce all of it (single RTX 5090, EuroSAT RGB, fixed splits and seeds).
+This repo started as an MSc group project (AI for Space module) (University of Leicester, graded 90%, see `coursework/`): a ResNet-18 classifier for EuroSAT satellite imagery. I have since rebuilt it into a measured research project: an onboard-class EO classifier with layered assurance (calibrated refusal, out-of-distribution monitoring, compression/assurance trade-offs, and radiation-fault behaviour), built as the perception front end for a formally verified action-gating kernel (separate project). Everything below is measured. The scripts in `experiments/` and the raw outputs in `results/` reproduce all of it (single RTX 5090, EuroSAT RGB, fixed splits and seeds).
 
 What the judged data actually looks like - real tiles, real verdicts:
 
@@ -35,7 +35,7 @@ SEU study (10 trials per level): single weight bit flips have no measurable effe
 Re-running the stack on the full 13-band Sentinel-2 EuroSAT (uint16 TIFs, 2 GB): conformal coverage lands on target (90.06% vs 90%), clean residual risk is 0.70% at 88.1% acceptance for the small model, and the input-statistics check again blocks 100% of noisy inputs. Band-selection curve (same small CNN, bytes = per-tile sensor data): RGB-3 92.0% at 24.6 KB; RGB+NIR+SWIR (5 bands) 95.9% at 41 KB; 8 bands 96.6% at 65.5 KB; all 13 bands 96.8% at 106.5 KB. Five bands capture about 97% of the 13-band accuracy at 38% of the data budget, and the marginal value of a band collapses after 8. Spectral choice matters more than model capacity at this scale: the 5-band small model beats the RGB one by 4 points.
 
 
-## Figures
+### Companion charts (findings 1, 4, 6, 7)
 
 ![Coverage under quantization](figures/coverage.png)
 ![Three-check gate under corruption](figures/gate.png)
@@ -58,7 +58,7 @@ Repeating the stage-9 test on a 2x2 grid (EuroSAT and CIFAR-10; ResNet18 and Mob
 ![Generality of the bound](figures/generality.png)
 
 ## 11. The efficiency law: recalibrated sets stay valid but collapse to uninformative below a knee (n=3)
-From the stage-10 grid, mean prediction-set size after recalibration: roughly one class down to 6-bit (0.91 to 1.24 across cells), a knee at 4-bit (1.1 for EuroSAT ResNet18 but already 4.9 for MobileNetV3), explosion at 3-bit (5.2 to 9.4 classes) and saturation at 2-bit (sets contain nearly all 10 classes). Combined with findings 9 and 10 this completes the picture: validity is always recoverable by recalibration, but informativeness has a precision floor, and the floor arrives one full bit earlier for MobileNetV3 than for ResNet18. For deployment this gives a simple acceptance test: after quantization and recalibration, the mean set size on the calibration data tells you whether the compressed model is still worth flying.
+From the stage-10 grid, mean prediction-set size after recalibration: roughly one class down to 6-bit for three of the four cells (0.91 to 1.24; the exception is CIFAR-10/MobileNetV3, which starts at 2.9), a knee at 4-bit (1.1 for EuroSAT ResNet18 but already 4.9 for MobileNetV3), explosion at 3-bit (5.2 to 9.4 classes) and saturation at 2-bit (sets contain nearly all 10 classes). Combined with findings 9 and 10 this completes the picture: validity is always recoverable by recalibration, but informativeness has a precision floor, and the floor arrives one full bit earlier for MobileNetV3 than for ResNet18. For deployment this gives a simple acceptance test: after quantization and recalibration, the mean set size on the calibration data tells you whether the compressed model is still worth flying.
 
 ![Efficiency collapse](figures/efficiency.png)
 
@@ -103,13 +103,13 @@ multispectral zip (script header); stage 10 downloads CIFAR-10. Finding-to-file 
 `docs/EVIDENCE_MAP.md`. Fresh-clone verification (2026-08-04): stage 1 re-run from a clean
 checkout with a clean `EA_DIR` reproduced the README numbers exactly (accuracy 0.9798,
 coverage 0.9077, INT8 recalibrated coverage 0.9106).
-Every figure regenerates via `make_figures.py` from `results/*.json`. Stages were run on a
-single RTX 5090 (CUDA 13, Python 3.12, torch 2.12); per-stage runtime 10s to 40min, stated
+The core charts regenerate via `make_figures.py`; the remaining figures are produced by their stage scripts and the evidence-image generators, all committed. Stages were run on a
+single RTX 5090 (CUDA 13, Python 3.12 on the training box, torch 2.12); per-stage runtime 10s to 40min, stated
 in each finding. Licensed MIT; cite via CITATION.cff.
 
 ## Repo map
 - `coursework/`: the original module project (report, slides, notebook, demo video; graded 90%)
-- `experiments/eurosat_stage1..12.py`: one self-contained script per stage
+- `experiments/eurosat_stage1..13.py`: one self-contained script per stage
 - `results/*.json`: raw measured outputs (per-seed rows and aggregates) behind every number above
 
 MSc AI for Business Intelligence, University of Leicester. Experiments August 2026.
