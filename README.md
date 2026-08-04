@@ -26,6 +26,14 @@ SEU study (10 trials per level): single weight bit flips have no measurable effe
 ## 7. Multispectral: the gate transfers, and five bands buy most of the value (n=3)
 Re-running the stack on the full 13-band Sentinel-2 EuroSAT (uint16 TIFs, 2 GB): conformal coverage lands on target (90.06% vs 90%), clean residual risk is 0.70% at 88.1% acceptance for the small model, and the input-statistics check again blocks 100% of noisy inputs. Band-selection curve (same small CNN, bytes = per-tile sensor data): RGB-3 92.0% at 24.6 KB; RGB+NIR+SWIR (5 bands) 95.9% at 41 KB; 8 bands 96.6% at 65.5 KB; all 13 bands 96.8% at 106.5 KB. Five bands capture about 97% of the 13-band accuracy at 38% of the data budget, and the marginal value of a band collapses after 8. Spectral choice matters more than model capacity at this scale: the 5-band small model beats the RGB one by 4 points.
 
+
+## Figures
+
+![Coverage under quantization](figures/coverage.png)
+![Three-check gate under corruption](figures/gate.png)
+![Compression ladder and SEU injection](figures/ladder_seu.png)
+![Accuracy per byte of sensor budget](figures/band_curve.png)
+
 ## Architecture this feeds
 ```
 raw image .. input-stats envelope ..\
