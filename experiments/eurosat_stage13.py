@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Stage 13 - paper revision experiments (panel plan items 2,3,6,9):
+"""Stage 13 - additional experiments for the paper:
 (a) BASELINES: predict test-set coverage deficit via TV-bound vs cal-set direct
     shift vs accuracy-drop proxy; report signed error + |error|.
 (b) ESTIMATORS: TV(1000 bins), TV(100 bins), KS, Wasserstein-1 as predictors.
