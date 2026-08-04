@@ -2,7 +2,7 @@
 
 This repo started as an MSc AI for Space group project (University of Leicester, graded 90%, see `coursework/`): a ResNet-18 classifier for EuroSAT satellite imagery. I have since rebuilt it into a measured research project: an onboard-class EO classifier with layered assurance (calibrated refusal, out-of-distribution monitoring, compression/assurance trade-offs, and radiation-fault behaviour), built as the perception front end for a formally verified action-gating kernel (separate project). Everything below is measured. The scripts in `experiments/` and the raw outputs in `results/` reproduce all of it (single RTX 5090, EuroSAT RGB, fixed splits and seeds).
 
-Seven findings, in the order I found them:
+Eight findings, in the order I found them:
 
 ## 1. Quantization silently breaks conformal guarantees (n=20 seeds)
 If you calibrate split conformal prediction on the FP32 model and reuse that calibration on the INT8 deployment artifact, coverage falls below target at every alpha tested (for example 88.8% +/- 0.8 against a 90% target, widening to a 2-point gap at alpha 0.15). INT8 itself costs almost no accuracy (98.13% to 98.03%). Recalibrating on the quantized model restores target coverage. The practical rule: calibrate the artifact that flies, not the model you trained.
@@ -34,6 +34,11 @@ Re-running the stack on the full 13-band Sentinel-2 EuroSAT (uint16 TIFs, 2 GB):
 ![Compression ladder and SEU injection](figures/ladder_seu.png)
 ![Accuracy per byte of sensor budget](figures/band_curve.png)
 
+## 8. The quantization-coverage scaling law (n=5)
+Sweeping weight precision from FP32 down to 2 bits with per-channel post-training quantization: coverage under stale FP32 calibration collapses smoothly and monotonically with the quantization-induced probability shift (89.8% at 8-bit, 88.9% at 6-bit, 66.5% at 4-bit, 11.6% at 3-bit, 1.9% at 2-bit against a 90% target), tracking the relative weight perturbation (1%, 4%, 20%, 42%, 75%). Recalibrating on the quantized model restores target coverage at every precision, including a 3-bit model that is only 47.8% accurate (coverage 89.7%) and a 2-bit model at 10.3% accuracy (coverage 100%, achieved by prediction sets growing toward all classes). The split is exact: validity is always recoverable by recalibration; what degrades irreversibly is efficiency, the informativeness of the sets. Stale calibration fails silently and predictably; the probability shift is measurable on the ground before flight, which makes the coverage loss forecastable.
+
+![Coverage vs weight precision](figures/scaling_law.png)
+
 ## Architecture this feeds
 ```
 raw image .. input-stats envelope ..\
@@ -49,7 +54,7 @@ INT8 classifier .. conformal sets ...+-- ACCEPT/REFUSE --> formally verified act
 
 ## Repo map
 - `coursework/`: the original module project (report, slides, notebook, demo video; graded 90%)
-- `experiments/eurosat_stage1..7.py`: one self-contained script per stage
+- `experiments/eurosat_stage1..8.py`: one self-contained script per stage
 - `results/*.json`: raw measured outputs (per-seed rows and aggregates) behind every number above
 
 MSc AI for Business Intelligence, University of Leicester. Experiments August 2026.
