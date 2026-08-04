@@ -2,6 +2,10 @@
 
 This repo started as an MSc AI for Space group project (University of Leicester, graded 90%, see `coursework/`): a ResNet-18 classifier for EuroSAT satellite imagery. I have since rebuilt it into a measured research project: an onboard-class EO classifier with layered assurance (calibrated refusal, out-of-distribution monitoring, compression/assurance trade-offs, and radiation-fault behaviour), built as the perception front end for a formally verified action-gating kernel (separate project). Everything below is measured. The scripts in `experiments/` and the raw outputs in `results/` reproduce all of it (single RTX 5090, EuroSAT RGB, fixed splits and seeds).
 
+What the judged data actually looks like - real tiles, real verdicts:
+
+![Real judged tiles](figures/specimens.png)
+
 Thirteen findings, in the order I found them:
 
 ## 1. Quantization silently breaks conformal guarantees (n=20 seeds)
