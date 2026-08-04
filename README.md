@@ -14,6 +14,10 @@ If you calibrate split conformal prediction on the FP32 model and reuse that cal
 ## 2. Conformal refusal misses sensor noise entirely (n=20)
 Refusal (an empty prediction set) rises as expected under blur (49%) and brightness shift (39%). Under additive Gaussian noise the model instead becomes confidently wrong: accuracy 13%, refusal 6.9%, which is below the clean-image rate. The coverage guarantee fails without any visible signal.
 
+What the four measured conditions actually look like on one real tile:
+
+![One tile, four conditions](figures/corruptions.png)
+
 ## 3. Energy-score OOD misses the same noise (n=5)
 At a 5% clean false-positive budget, energy-score detection catches blur (45%) and brightness (34%) but only 1.5% of noise. Noise inflates the logits, so a logit-space score reads it as more in-distribution, not less. Two independent learned monitors share the same blind spot.
 
@@ -58,6 +62,10 @@ From the stage-10 grid, mean prediction-set size after recalibration: roughly on
 
 ![Efficiency collapse](figures/efficiency.png)
 
+The real 13-band data behind finding 7 - one tile, every band:
+
+![13-band tile](figures/bands.png)
+
 ## 12. Quantized storage is intrinsic radiation containment; FP32 is not (n=3, 8 trials/cell)
 Injecting bit flips into the stored quantized integer weight codes (a faithful stored-weight SEU) versus FP32 float flips: at 8-bit, 100 stored-weight flips cause no measurable damage at all (accuracy 98.2% before and after), because an integer flip is magnitude-bounded by the channel scale. The same 100 flips in FP32 halve accuracy (97.7% to 49.3%) since one exponent-bit flip can inject an arbitrarily large weight, and the score gate stays blind while it happens (88.9% of inputs still accepted, 51% of them wrong). Quantization is therefore not only compression: it is fault containment. Two supporting numbers: 83 to 100% of single flips are output-silent in every format (so no output-side monitor can count faults; integrity checking must be weight-side), and a sha256 hash over all weights costs 4.3x one CPU inference, so hashing every hundredth frame adds about 4% overhead. Caveats: flips were injected into weights only (not scales or activations), on a 2048-image probe.
 
@@ -86,6 +94,13 @@ INT8 classifier .. conformal sets ...+-- ACCEPT/REFUSE --> formally verified act
 - [qualkit](https://github.com/ss1738/qualkit): the checks as a library + [Assurance Cards](https://github.com/ss1738/qualkit/blob/main/ASSURANCE_CARDS.md) spec
 - [qualkit-action](https://github.com/ss1738/qualkit-action): the first conformal CI gate
 - [live gate telemetry](https://ss1738.github.io/gate-telemetry/): 2,400 real decisions replayed
+
+## Reproduction
+`pip install -r requirements.txt`, then run any stage: `python3 experiments/eurosat_stageN.py`
+(EuroSAT downloads automatically; stage 7 needs the 2GB multispectral zip, see script header).
+Every figure regenerates via `make_figures.py` from `results/*.json`. Stages were run on a
+single RTX 5090 (CUDA 13, Python 3.12, torch 2.12); per-stage runtime 10s to 40min, stated
+in each finding. Licensed MIT; cite via CITATION.cff.
 
 ## Repo map
 - `coursework/`: the original module project (report, slides, notebook, demo video; graded 90%)

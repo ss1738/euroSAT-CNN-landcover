@@ -1,0 +1,7 @@
+# Versions used for all measured results (RTX 5090, CUDA 13, Python 3.12)
+torch==2.12.0
+torchvision==0.27.0
+numpy>=1.26
+matplotlib>=3.8
+tifffile>=2024.2.12   # stage 7 (13-band TIFs) only
+Pillow>=10.0

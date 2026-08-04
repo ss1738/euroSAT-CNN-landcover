@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+title: "Assured onboard EO classification: measured findings on conformal guarantees under compression, fault injection, and drift"
+message: "If you use these findings, figures, or scripts, please cite this repository."
+type: software
+authors:
+  - family-names: Singh
+    given-names: Satyawan
+repository-code: "https://github.com/ss1738/euroSAT-CNN-landcover"
+license: MIT
+date-released: "2026-08-04"
+version: "1.0.0"
+keywords:
+  - conformal prediction
+  - model quantization
+  - onboard machine learning
+  - Earth observation
+  - runtime assurance
