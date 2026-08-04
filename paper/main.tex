@@ -7,7 +7,7 @@
 \usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
 \usepackage{microtype}
 
-\title{Forecasting Conformal Coverage Loss under Model Compression}
+\title{A Pre-Deployment Audit for Conformal Coverage under Model Compression}
 \author{Satyawan Singh\\
 \small University of Leicester (MSc AI, 2025); independent researcher\\
 \small \texttt{satyawansinghinuk@gmail.com}}
@@ -17,22 +17,21 @@
 \maketitle
 
 \begin{abstract}
-Deployed classifiers are routinely compressed after calibration: a model whose
-conformal guarantee was calibrated in FP32 ships with quantized weights. We show
-empirically that this silently invalidates the guarantee, and, more usefully,
-that the coverage loss is \emph{forecastable before deployment}. Treating
-post-training quantization as a computable shift of the nonconformity-score
-distribution, an elementary Kolmogorov/total-variation argument upper-bounds the
-coverage deficit under stale calibration by the distance between the reference
-and deployed score distributions, both measurable on the labeled calibration set
-already in hand. Across 2 datasets $\times$ 2 architectures $\times$ 5
+We present a pre-deployment audit that predicts, from data already in hand,
+how much conformal coverage a classifier will lose when it is compressed.
+Deployed models are routinely quantized after calibration, and we show
+empirically that this silently invalidates the guarantee while accuracy is
+unchanged. The audit computes the shift that compression induces in the
+nonconformity-score distribution on the labeled calibration set and outputs a
+computable upper bound on the resulting coverage deficit; no new data, labels,
+or deployment access is required. Across 2 datasets $\times$ 2 architectures $\times$ 5
 bit-widths (60 runs), the bound held in every run, and in the damage regime on
 peaked score distributions it is nearly tight: at 4-bit and 3-bit precision the
 measured deficit matched the total-variation distance to within 0.003. We
 further characterize what recalibration can and cannot repair: validity is
 restored at every precision tested, including models degraded to 47.8\%
 accuracy, while informativeness collapses past an architecture-dependent
-precision knee (mean prediction-set size 0.91 at 8-bit versus 5.6--9.4 classes
+precision knee (mean prediction-set size 0.91 at 8-bit versus 5.6 to 9.4 classes
 at 3-bit). A deployment corollary under simulated sensor drift shows that
 refreshing only the calibration scores (kilobytes; no retraining) maintains
 validity where launch calibration decays from 90.7\% to 20.9\% coverage, with
@@ -81,6 +80,15 @@ and can the damage be predicted in advance?} Our answers:
   calibration, requires intervention.
 \end{enumerate}
 
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.8\linewidth]{figures/sets_demo.png}
+\caption{The failure the audit predicts, on one real Sentinel-2 tile:
+prediction sets under a stale calibration threshold as weight precision
+drops.}
+\label{fig:sets}
+\end{figure}
+
 \section{Related work}
 
 \textbf{Conformal prediction under shift.} \citet{barber2023} bound the
@@ -126,8 +134,8 @@ deficit obeys
 \;\le\; d_{TV}(S^{\mathrm{ref}}, S^{q}),
 \label{eq:bound}
 \end{equation}
-up to the usual finite-sample slack in the calibration quantile. The
-inequality itself is elementary; its value is operational. Because compression
+up to the usual finite-sample slack in the calibration quantile. The inequality follows from a standard Kolmogorov/total-variation argument;
+its value here is operational. Because compression
 is applied by the deployer, both score distributions are computable on the
 \emph{same labeled calibration set}: quantize, re-score, estimate
 $d_{TV}$ (we use 1000-bin histograms on $[0,1]$). The result is a pre-flight
@@ -135,6 +143,25 @@ forecast: an upper bound on the coverage that will be lost if calibration is
 not refreshed. The empirical questions are whether the bound holds under
 estimation error and how tight it is; the remainder of the paper measures
 this.
+
+\begin{figure}[t]
+\centering
+\fbox{\parbox{0.92\linewidth}{
+\textbf{Protocol: pre-deployment coverage audit}\\[2pt]
+\textbf{Inputs:} reference model $f_{\mathrm{ref}}$, compressed candidate
+$f_q$, labeled calibration set $D_{\mathrm{cal}}$, level $\alpha$.
+\begin{enumerate}\itemsep1pt
+  \item Score $D_{\mathrm{cal}}$ under $f_{\mathrm{ref}}$ and under $f_q$.
+  \item Estimate $d_{TV}$ between the two score distributions (histogram).
+  \item Report forecast coverage floor $1-\alpha-d_{TV}$ under stale
+        calibration; if unacceptable, recalibrate $\hat q$ on the $f_q$ scores.
+  \item Compute mean prediction-set size under the recalibrated threshold;
+        reject the candidate if it exceeds the informativeness budget.
+  \item Ship $f_q$ with its recalibrated threshold and the audit record.
+\end{enumerate}}}
+\caption{The audit. One pass over the calibration set; no new data.}
+\label{fig:proto}
+\end{figure}
 
 \section{Experiments}
 
@@ -203,7 +230,25 @@ deficit $=$ TV.}
 \label{fig:tv}
 \end{figure}
 
-\textbf{Generality.} Repeating the test over the full grid, \{EuroSAT,
+\input{table_grid}
+
+\input{table_base}
+
+\textbf{Baselines and estimator choice.} Table~\ref{tab:base} compares
+pre-deployment predictors of the test deficit. The deficit measured directly
+on the calibration set is a near-exact point forecast (e.g.\ 0.234 vs.\ a
+true 0.235 at EuroSAT 4-bit) but is two-sided: it can and does underestimate
+(0.772 vs.\ 0.776 at 3-bit). The distributional distances are one-sided by
+Eq.~\eqref{eq:bound}: the Kolmogorov distance $d_K$ is the tighter certified
+bound and never underestimated in any run, with $d_{TV}$ more conservative;
+the accuracy drop badly underpredicts (0.123 vs.\ 0.235) and the Wasserstein
+distance carries no guarantee. The audit therefore reports the cal-shift as
+its point forecast and $d_K$ as its certified floor. With the APS score in
+place of LAC, the bound held in all runs as well (stale-calibration deficits
+were near zero for APS, whose cumulative scores are less perturbed by
+quantization; largest observed deficit 0.003).
+
+\textbf{Generality.} Repeating the test over the full grid (Table~\ref{tab:grid}), \{EuroSAT,
 CIFAR-10\} $\times$ \{ResNet18, MobileNetV3-Small\} $\times$
 \{8,6,4,3,2\}-bit, 3 seeds each, the bound of Eq.~\eqref{eq:bound} held in
 \textbf{60 of 60 runs} (Figure~\ref{fig:gen}). Tightness is systematic rather
@@ -232,9 +277,9 @@ peaked-task points hug it.}
 
 Recalibration always restores coverage, but the guarantee can be honored
 vacuously. Mean prediction-set size after recalibration
-(Figure~\ref{fig:eff}) stays near one class down to 6-bit (0.91--1.24 across
+(Figure~\ref{fig:eff}) stays near one class down to 6-bit (0.91 to 1.24 across
 the grid), passes a knee at 4-bit (1.14 for EuroSAT/ResNet18 but already 4.94
-for EuroSAT/MobileNetV3), and explodes at 3-bit (5.2--9.4 classes),
+for EuroSAT/MobileNetV3), and explodes at 3-bit (5.2 to 9.4 classes),
 saturating near all 10 classes at 2-bit. Validity and informativeness thus
 separate cleanly under compression: the former is always repairable by
 re-scoring, the latter has an architecture-dependent precision floor. Mean
@@ -258,7 +303,7 @@ brightness to $\times 1.35$; EuroSAT/ResNet18, 3 seeds,
 Figure~\ref{fig:drift}), never-refreshed launch calibration decays from
 90.7\% to 20.9\% coverage. Refreshing \emph{only the conformal scores} every
 4 weeks, 200 labeled samples per refresh, kilobytes of storage, no
-retraining or gradients, holds coverage at 81--87\% through end of test; a
+retraining or gradients, holds coverage at 81 to 87\% through end of test; a
 12-week cadence is insufficient (54.0\% at week 23), so refresh rate must
 track drift rate. Under the working refresh, mean set size grows from 0.91 to
 6.65 as model accuracy falls from 97.8\% to 30.9\%: the guarantee remains
@@ -277,9 +322,9 @@ model-health signal.}
 
 \section{Limitations}
 
-The bound in Eq.~\eqref{eq:bound} is elementary and one-directional; we claim
-no new theory, only its instantiation, validation, and operational use for
-compression. TV is estimated by histograms; at extreme damage (3-bit) the
+The bound in Eq.~\eqref{eq:bound} is one-directional and follows from standard
+arguments; the claims of this paper are the audit protocol, its measured
+tightness regime, and its validation, not new theory. TV is estimated by histograms; at extreme damage (3-bit) the
 estimator error is visible as a 0.001 nominal violation. Experiments cover
 split conformal classification with the LAC score on two mid-scale vision
 datasets and two architectures; regression, other scores, and

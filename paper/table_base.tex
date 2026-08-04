@@ -1,0 +1,12 @@
+\begin{table}[t]\centering\small
+\caption{Predicting the test-set coverage deficit before deployment (ResNet18, $\alpha{=}0.10$, $n{=}3$ seeds). Cal-shift is the deficit measured directly on the calibration set (point forecast); $d_K$ and $d_{TV}$ are certified one-sided bounds (Eq.~\ref{eq:bound}); accuracy drop and $W_1$ carry no guarantee and can underestimate.}
+\label{tab:base}
+\begin{tabular}{lrrrrrrr}\toprule
+Setting & True deficit & Cal-shift & $d_K$ & $d_{TV}$ & Acc.\ drop & $W_1$\\ \midrule
+EuroSAT, 8-bit & -0.002 & -0.000 & 0.004 & 0.052 & 0.000 & 0.001\\
+EuroSAT, 4-bit & 0.235 & 0.234 & 0.274 & 0.288 & 0.123 & 0.128\\
+EuroSAT, 3-bit & 0.776 & 0.772 & 0.780 & 0.790 & 0.513 & 0.535\\
+CIFAR-10, 8-bit & 0.000 & 0.000 & 0.005 & 0.139 & 0.001 & 0.001\\
+CIFAR-10, 4-bit & 0.054 & 0.054 & 0.127 & 0.220 & 0.071 & 0.079\\
+CIFAR-10, 3-bit & 0.312 & 0.315 & 0.485 & 0.532 & 0.381 & 0.391\\
+\bottomrule\end{tabular}\end{table}

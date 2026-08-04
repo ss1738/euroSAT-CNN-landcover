@@ -1,0 +1,30 @@
+\begin{table}[t]\centering\small
+\caption{Coverage deficit vs.\ the TV forecast across the full grid ($\alpha{=}0.10$, $n{=}3$ seeds, mean$\pm$sd). Ratio $=$ deficit/TV; the bound holds when ratio $\le 1$. It held in all 60 individual runs.}
+\label{tab:grid}
+\begin{tabular}{llrrrr}\toprule
+Dataset & Model & Bits & Deficit & TV forecast & Ratio\\ \midrule
+EuroSAT & ResNet18 & 8 & -0.002$\pm$0.002 & 0.054$\pm$0.002 & -0.04\\
+EuroSAT & ResNet18 & 6 & 0.007$\pm$0.010 & 0.063$\pm$0.013 & 0.11\\
+EuroSAT & ResNet18 & 4 & 0.235$\pm$0.013 & 0.290$\pm$0.021 & 0.81\\
+EuroSAT & ResNet18 & 3 & 0.776$\pm$0.050 & 0.797$\pm$0.036 & 0.97\\
+EuroSAT & ResNet18 & 2 & 0.869$\pm$0.054 & 0.955$\pm$0.043 & 0.91\\
+\midrule
+EuroSAT & MobileNetV3-S & 8 & 0.016$\pm$0.009 & 0.121$\pm$0.021 & 0.13\\
+EuroSAT & MobileNetV3-S & 6 & 0.121$\pm$0.084 & 0.271$\pm$0.056 & 0.45\\
+EuroSAT & MobileNetV3-S & 4 & 0.623$\pm$0.055 & 0.698$\pm$0.041 & 0.89\\
+EuroSAT & MobileNetV3-S & 3 & 0.870$\pm$0.014 & 0.925$\pm$0.013 & 0.94\\
+EuroSAT & MobileNetV3-S & 2 & 0.805$\pm$0.011 & 0.902$\pm$0.011 & 0.89\\
+\midrule
+CIFAR-10 & ResNet18 & 8 & -0.001$\pm$0.001 & 0.138$\pm$0.004 & -0.00\\
+CIFAR-10 & ResNet18 & 6 & 0.002$\pm$0.001 & 0.139$\pm$0.004 & 0.02\\
+CIFAR-10 & ResNet18 & 4 & 0.072$\pm$0.044 & 0.247$\pm$0.046 & 0.29\\
+CIFAR-10 & ResNet18 & 3 & 0.371$\pm$0.090 & 0.525$\pm$0.036 & 0.71\\
+CIFAR-10 & ResNet18 & 2 & 0.667$\pm$0.049 & 0.822$\pm$0.042 & 0.81\\
+\midrule
+CIFAR-10 & MobileNetV3-S & 8 & -0.000$\pm$0.004 & 0.192$\pm$0.005 & -0.00\\
+CIFAR-10 & MobileNetV3-S & 6 & 0.018$\pm$0.003 & 0.193$\pm$0.005 & 0.09\\
+CIFAR-10 & MobileNetV3-S & 4 & 0.142$\pm$0.059 & 0.310$\pm$0.019 & 0.46\\
+CIFAR-10 & MobileNetV3-S & 3 & 0.468$\pm$0.006 & 0.556$\pm$0.008 & 0.84\\
+CIFAR-10 & MobileNetV3-S & 2 & 0.797$\pm$0.003 & 0.985$\pm$0.009 & 0.81\\
+\bottomrule
+\end{tabular}\end{table}
