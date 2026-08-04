@@ -72,6 +72,12 @@ INT8 classifier .. conformal sets ...+-- ACCEPT/REFUSE --> formally verified act
 - Prior art: weighted conformal prediction for onboard EO domain shift exists (DLR, SPIE 2025) and is the foundation for the perception layer here. The contribution of this repo is the systems integration, the measured failure modes, and the qualification framing (ECSS-E-HB-40-02A), not new conformal methodology.
 - Next: on-silicon latency for the 25 to 100 KB students on an STM32/WB55 alongside the kernel's WCET harness; an end-to-end cFS demo; real rather than synthetic sensor-degradation data.
 
+## The full stack this research powers
+- `EVIDENCE_PACKAGE.md` (this repo): first public ECSS-oriented safety-cage worked example
+- [qualkit](https://github.com/ss1738/qualkit): the checks as a library + [Assurance Cards](https://github.com/ss1738/qualkit/blob/main/ASSURANCE_CARDS.md) spec
+- [qualkit-action](https://github.com/ss1738/qualkit-action): the first conformal CI gate
+- [live gate telemetry](https://ss1738.github.io/gate-telemetry/): 2,400 real decisions replayed
+
 ## Repo map
 - `coursework/`: the original module project (report, slides, notebook, demo video; graded 90%)
 - `experiments/eurosat_stage1..11.py`: one self-contained script per stage
