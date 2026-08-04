@@ -100,7 +100,9 @@ INT8 classifier .. conformal sets ...+-- ACCEPT/REFUSE --> formally verified act
 stage: `python3 experiments/eurosat_stageN.py`. Outputs go to `EA_DIR` (default
 `~/eurosat-assured`), never the repo. EuroSAT downloads automatically; stage 7 needs the 2GB
 multispectral zip (script header); stage 10 downloads CIFAR-10. Finding-to-file map:
-`docs/EVIDENCE_MAP.md`.
+`docs/EVIDENCE_MAP.md`. Fresh-clone verification (2026-08-04): stage 1 re-run from a clean
+checkout with a clean `EA_DIR` reproduced the README numbers exactly (accuracy 0.9798,
+coverage 0.9077, INT8 recalibrated coverage 0.9106).
 Every figure regenerates via `make_figures.py` from `results/*.json`. Stages were run on a
 single RTX 5090 (CUDA 13, Python 3.12, torch 2.12); per-stage runtime 10s to 40min, stated
 in each finding. Licensed MIT; cite via CITATION.cff.
