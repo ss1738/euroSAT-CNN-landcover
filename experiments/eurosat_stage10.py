@@ -7,7 +7,7 @@ import torchvision as tv
 from torch.utils.data import DataLoader, random_split
 
 SEEDS=[0,1,2]; ALPHA=0.10; BATCH=256; BITS=[8,6,4,3,2]; NB=1000
-ROOT=os.path.expanduser("~/eurosat-assured/data"); OUT=os.path.expanduser("~/eurosat-assured"); dev="cuda"
+ROOT=os.path.join(os.environ.get("EA_DIR", os.path.expanduser("~/eurosat-assured")), "data"); OUT=os.environ.get("EA_DIR", os.path.expanduser("~/eurosat-assured")); dev="cuda"
 
 def get_data(name,seed):
     g=torch.Generator().manual_seed(seed)

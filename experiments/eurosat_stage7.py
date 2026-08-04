@@ -7,9 +7,9 @@ import torch, torch.nn as nn, torch.nn.functional as F
 from torch.utils.data import DataLoader, random_split, Dataset
 
 SEEDS=[0,1,2]; ALPHA=0.10; EP_T=12; EP_S=40; BATCH=256
-ROOT=os.path.expanduser("~/eurosat-assured/data/ms/EuroSAT_MS")
-OUT=os.path.expanduser("~/eurosat-assured"); dev="cuda"
-CACHE=os.path.expanduser("~/eurosat-assured/data/ms_cache.npz")
+ROOT=os.path.join(os.environ.get("EA_DIR", os.path.expanduser("~/eurosat-assured")), "data/ms/EuroSAT_MS")
+OUT=os.environ.get("EA_DIR", os.path.expanduser("~/eurosat-assured")); dev="cuda"
+CACHE=os.path.join(os.environ.get("EA_DIR", os.path.expanduser("~/eurosat-assured")), "data/ms_cache.npz")
 SUBSETS={"rgb3":[3,2,1],"nir5":[1,2,3,7,10],"b8":[1,2,3,4,5,6,7,10],"all13":list(range(13))}
 
 if os.path.exists(CACHE):

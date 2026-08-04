@@ -6,13 +6,13 @@ not the model'. Simulates 24 weeks of progressive sensor degradation
   B) score refresh every 4 weeks (200 labeled samples, ~KBs of scores)
   C) score refresh every 12 weeks
 No retraining anywhere. Output stage12_results.json"""
-import json, time
+import json, os, time
 import torch, torch.nn as nn, torch.nn.functional as F
 import torchvision as tv
 from torch.utils.data import DataLoader, random_split
 
 SEEDS=[0,1,2]; ALPHA=0.10; WEEKS=24; PER_WEEK=500; REFRESH_N=200
-ROOT="/home/satyawansingh/eurosat-assured/data"; OUT="/home/satyawansingh/eurosat-assured"; dev="cuda"
+ROOT=os.path.join(os.environ.get("EA_DIR", os.path.expanduser("~/eurosat-assured")), "data"); OUT=os.environ.get("EA_DIR", os.path.expanduser("~/eurosat-assured")); dev="cuda"
 norm=tv.transforms.Normalize([0.3444,0.3803,0.4078],[0.0914,0.0651,0.0552])
 tf_tr=tv.transforms.Compose([tv.transforms.RandomHorizontalFlip(),tv.transforms.RandomVerticalFlip(),tv.transforms.ToTensor(),norm])
 full=tv.datasets.EuroSAT(root=ROOT,download=True); n=len(full)

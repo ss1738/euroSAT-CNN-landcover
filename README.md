@@ -96,8 +96,11 @@ INT8 classifier .. conformal sets ...+-- ACCEPT/REFUSE --> formally verified act
 - [live gate telemetry](https://ss1738.github.io/gate-telemetry/): 2,400 real decisions replayed
 
 ## Reproduction
-`pip install -r requirements.txt`, then run any stage: `python3 experiments/eurosat_stageN.py`
-(EuroSAT downloads automatically; stage 7 needs the 2GB multispectral zip, see script header).
+`pip install -r requirements.txt`, then `./reproduce.sh` (all stages, ~2.5h GPU) or any single
+stage: `python3 experiments/eurosat_stageN.py`. Outputs go to `EA_DIR` (default
+`~/eurosat-assured`), never the repo. EuroSAT downloads automatically; stage 7 needs the 2GB
+multispectral zip (script header); stage 10 downloads CIFAR-10. Finding-to-file map:
+`docs/EVIDENCE_MAP.md`.
 Every figure regenerates via `make_figures.py` from `results/*.json`. Stages were run on a
 single RTX 5090 (CUDA 13, Python 3.12, torch 2.12); per-stage runtime 10s to 40min, stated
 in each finding. Licensed MIT; cite via CITATION.cff.

@@ -25,8 +25,8 @@ EPOCHS_T = 12
 EPOCHS_S = 50
 BATCH = 256
 KD_T = 4.0
-ROOT = os.path.expanduser("~/eurosat-assured/data")
-OUT = os.path.expanduser("~/eurosat-assured")
+ROOT = os.path.join(os.environ.get("EA_DIR", os.path.expanduser("~/eurosat-assured")), "data")
+OUT = os.environ.get("EA_DIR", os.path.expanduser("~/eurosat-assured"))
 dev = "cuda"
 
 MEAN, STD = [0.3444, 0.3803, 0.4078], [0.0914, 0.0651, 0.0552]

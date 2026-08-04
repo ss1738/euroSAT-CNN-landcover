@@ -20,8 +20,8 @@ KD_T = 4.0
 WIDTHS = [1.0, 0.5, 0.25]
 SEU_KS = [1, 10, 100]
 SEU_TRIALS = 10
-ROOT = os.path.expanduser("~/eurosat-assured/data")
-OUT = os.path.expanduser("~/eurosat-assured")
+ROOT = os.path.join(os.environ.get("EA_DIR", os.path.expanduser("~/eurosat-assured")), "data")
+OUT = os.environ.get("EA_DIR", os.path.expanduser("~/eurosat-assured"))
 dev = "cuda"
 
 MEAN, STD = [0.3444, 0.3803, 0.4078], [0.0914, 0.0651, 0.0552]

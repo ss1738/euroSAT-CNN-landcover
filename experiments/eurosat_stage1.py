@@ -24,8 +24,8 @@ SEED = 42
 ALPHA = 0.10
 EPOCHS = 12
 BATCH = 256
-ROOT = os.path.expanduser("~/eurosat-assured/data")
-OUT = os.path.expanduser("~/eurosat-assured")
+ROOT = os.path.join(os.environ.get("EA_DIR", os.path.expanduser("~/eurosat-assured")), "data")
+OUT = os.environ.get("EA_DIR", os.path.expanduser("~/eurosat-assured"))
 os.makedirs(OUT, exist_ok=True)
 torch.manual_seed(SEED)
 

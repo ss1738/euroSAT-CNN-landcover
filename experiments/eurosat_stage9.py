@@ -7,7 +7,7 @@ import torchvision as tv
 from torch.utils.data import DataLoader, random_split
 
 SEEDS=[0,1,2,3,4]; ALPHA=0.10; EPOCHS=12; BATCH=256; BITS=[8,6,4,3,2]; NB=200
-ROOT=os.path.expanduser("~/eurosat-assured/data"); OUT=os.path.expanduser("~/eurosat-assured"); dev="cuda"
+ROOT=os.path.join(os.environ.get("EA_DIR", os.path.expanduser("~/eurosat-assured")), "data"); OUT=os.environ.get("EA_DIR", os.path.expanduser("~/eurosat-assured")); dev="cuda"
 norm=tv.transforms.Normalize([0.3444,0.3803,0.4078],[0.0914,0.0651,0.0552])
 tf_tr=tv.transforms.Compose([tv.transforms.RandomHorizontalFlip(),tv.transforms.RandomVerticalFlip(),tv.transforms.ToTensor(),norm])
 tf_ev=tv.transforms.Compose([tv.transforms.ToTensor(),norm])

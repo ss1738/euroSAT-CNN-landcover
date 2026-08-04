@@ -22,8 +22,8 @@ SEEDS = list(range(20))
 ALPHAS = [0.05, 0.10, 0.15]
 EPOCHS = 12
 BATCH = 256
-ROOT = os.path.expanduser("~/eurosat-assured/data")
-OUT = os.path.expanduser("~/eurosat-assured")
+ROOT = os.path.join(os.environ.get("EA_DIR", os.path.expanduser("~/eurosat-assured")), "data")
+OUT = os.environ.get("EA_DIR", os.path.expanduser("~/eurosat-assured"))
 dev = "cuda"
 
 MEAN, STD = [0.3444, 0.3803, 0.4078], [0.0914, 0.0651, 0.0552]
